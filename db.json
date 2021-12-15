@@ -7,14 +7,23 @@
       "comments": "",
       "poster": "//image.tmdb.org/t/p/original/yVUAfbrP5HDJugXraB7KQS0yz6Z.jpg",
       "background": "//image.tmdb.org/t/p/original/piuRhGiQBYWgW668eSNJ2ug5uAO.jpg"
+    },
+    "1639242892318": {
+      "name": "The Walking Dead",
+      "genre_id": null,
+      "poster": "//image.tmdb.org/t/p/original/rqeYMLryjcawh2JeRpCVUDXYM5b.jpg",
+      "background": "//image.tmdb.org/t/p/original/eUMwG5vXg4ovEUvXLAFgrr4bQvp.jpg"
     }
   },
   "genres": {
-    "1": {
-      "name": "Ação"
+    "1639242892318": {
+      "name": "Ação - Suspense"
     },
-    "2": {
-      "name": "Comédia"
+    "1639326671955": {
+      "name": "Terror"
+    },
+    "1639340584692": {
+      "name": "Sci-fi"
     }
   },
   "count": 0
