@@ -7,7 +7,8 @@ const EditarSerie = () => {
   const [form, setForm] = useState('')
   const [success, setSuccess] = useState(false)
   const [data, setData] = useState([])
-  const [mode, setMode] = useState('CLOSE')
+  const [mode, setMode] = useState('OPEN')
+  const [genre, setGenre] = useState([])
 
   const { id } = useParams()
 
@@ -18,25 +19,27 @@ const EditarSerie = () => {
     })
   }, [id])
 
-  const onchange = (evt) => {
+  useEffect(() => {
+    axios.get('/api/genres').then((res) => {
+      setGenre(res.data.data)
+    })
+  }, [])
+
+  const onchange = (field) => (evt) => {
     setForm({
       ...form,
-      name: evt.target.value,
+      [field]: evt.target.value,
     })
   }
 
   const add = () => {
-    axios
-      .put('/api/series/' + id, {
-        ...form,
-      })
-      .then((res) => {
-        setSuccess(true)
-      })
+    axios.put('/api/series/' + id, form).then((res) => {
+      setSuccess(true)
+    })
   }
 
   if (success) {
-    return <Navigate to="/series" />
+    // return <Navigate to="/series" />
   }
 
   // header background
@@ -57,7 +60,7 @@ const EditarSerie = () => {
             <div className="row h-100 align-items-center">
               <div className="col-3">
                 <img
-                  src={data.poster}
+                  src={form.poster}
                   alt={form.name}
                   className="img-fluid img-thumbnail"
                 />
@@ -67,7 +70,7 @@ const EditarSerie = () => {
                 <div className="lead text-white">
                   <Badge className="bg-success text-white">Teste</Badge>
                   <Badge className="bg-warning text-dark">Warning</Badge>
-                  Genêro: {data.genre}
+                  Genêro: {form.genre_name}
                 </div>
               </div>
             </div>
@@ -75,24 +78,62 @@ const EditarSerie = () => {
         </div>
       </header>
       <div className="container">
-        <button type="button" onClick={() => setMode('OPEN')}>
+        <button
+          type="button"
+          className="btn-primary"
+          onClick={() => setMode('OPEN')}
+        >
           Editar
         </button>
       </div>
       {mode === 'OPEN' && (
         <div className="container">
           <h1>Alterar Série {form.name}</h1>
-          <pre>{JSON.stringify(data)}</pre>
+          <pre>{JSON.stringify(form)}</pre>
           <form>
             <div className=" form-group flex-grow-1">
-              <label htmlFor="name">Nome</label>
+              <label htmlFor="name" className="px-1 mt-3">
+                Nome
+              </label>
               <input
                 defaultValue={form.name}
-                onInput={onchange}
+                onInput={onchange('name')}
                 type="text"
                 placeholder="Nome da série"
                 className="form-control"
               />
+            </div>
+            <div className=" form-group flex-grow-1">
+              <label htmlFor="comments" className="px-1 mt-3">
+                Comentários
+              </label>
+              <input
+                defaultValue={form.comments}
+                onInput={onchange('comments')}
+                type="text"
+                placeholder="Comentários"
+                className="form-control"
+              />
+            </div>
+            <div className=" form-group flex-grow-1">
+              <label htmlFor="genre_id" className="px-1 mt-3">
+                Genêro
+              </label>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                onInput={onchange('genre_id')}
+              >
+                {genre.map((item) => (
+                  <option
+                    key={item.id}
+                    value={item.id}
+                    selected={item.id == form.genre_id}
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <button
               type="button"
