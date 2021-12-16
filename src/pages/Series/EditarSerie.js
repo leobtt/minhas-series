@@ -39,7 +39,7 @@ const EditarSerie = () => {
   }
 
   if (success) {
-    // return <Navigate to="/series" />
+    return <Navigate to="/series" />
   }
 
   // header background
@@ -67,10 +67,19 @@ const EditarSerie = () => {
               </div>
               <div className="col-8">
                 <h1 className="font-weight-light text-white">{form.name}</h1>
-                <div className="lead text-white">
-                  <Badge className="bg-success text-white">Teste</Badge>
-                  <Badge className="bg-warning text-dark">Warning</Badge>
+                <span className="text-white ps-1">
+                  {' '}
                   Genêro: {form.genre_name}
+                </span>
+                <div className="lead text-white mt-2">
+                  {form.status === 'ASSISTIDO' && (
+                    <Badge className="bg-success text-white">Assistido</Badge>
+                  )}
+                  {form.status === 'PARA_ASSISTIR' && (
+                    <Badge className="bg-warning text-dark">
+                      Não assistido
+                    </Badge>
+                  )}
                 </div>
               </div>
             </div>
@@ -120,21 +129,52 @@ const EditarSerie = () => {
                 Genêro
               </label>
               <select
-                class="form-select"
+                className="form-select"
                 aria-label="Default select example"
-                onInput={onchange('genre_id')}
+                onChange={onchange('genre_id')}
               >
                 {genre.map((item) => (
                   <option
                     key={item.id}
                     value={item.id}
-                    selected={item.id == form.genre_id}
+                    selected={parseInt(item.id) === parseInt(form.genre_id)}
                   >
                     {item.name}
                   </option>
                 ))}
               </select>
             </div>
+
+            <div className="d-flex">
+              <label htmlFor="status" className="px-1 mt-4">
+                Status:
+              </label>
+              <div className="form-check px-5 mt-4">
+                <input
+                  onClick={onchange('status')}
+                  className="form-check-input"
+                  type="radio"
+                  name="status"
+                  value="ASSISTIDO"
+                />
+                <label className="form-check-label" htmlFor="assistido">
+                  Assistido
+                </label>
+              </div>
+              <div className="form-check px-4 mt-4">
+                <input
+                  onClick={onchange('status')}
+                  className="form-check-input"
+                  type="radio"
+                  name="status"
+                  value="PARA_ASSISTIR"
+                />
+                <label className="form-check-label" htmlFor="paraAssistir">
+                  Para assistir
+                </label>
+              </div>
+            </div>
+
             <button
               type="button"
               onClick={add}
