@@ -11,7 +11,7 @@ const HeaderTitleStyle = ({ title, pathway }) => {
             className="pt-2 px-4 mb-2 me-2 btn btn-primary"
             to={`/${pathway}/novo`}
           >
-            Nova Série
+            Adicionar {title}
           </Link>
         </div>
       </div>
