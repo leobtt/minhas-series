@@ -1,18 +1,38 @@
 {
   "series": {
-    "1": {
-      "name": "La casa de papel",
-      "status": "WATCHED",
-      "genre_id": 1,
-      "comments": "",
-      "poster": "//image.tmdb.org/t/p/original/yVUAfbrP5HDJugXraB7KQS0yz6Z.jpg",
-      "background": "//image.tmdb.org/t/p/original/piuRhGiQBYWgW668eSNJ2ug5uAO.jpg"
-    },
     "1639242892318": {
       "name": "The Walking Dead",
-      "genre_id": null,
+      "status": "PARA_ASSISTIR",
+      "genre_id": 1639242892318,
       "poster": "//image.tmdb.org/t/p/original/rqeYMLryjcawh2JeRpCVUDXYM5b.jpg",
       "background": "//image.tmdb.org/t/p/original/eUMwG5vXg4ovEUvXLAFgrr4bQvp.jpg"
+    },
+    "1639769164394": {
+      "name": "La casa de papel",
+      "status": "PARA_ASSISTIR",
+      "genre_id": 1639242892318,
+      "comments": "serie muito boa",
+      "poster": "//image.tmdb.org/t/p/original/qUmlmYWx3WndM01DHOTrmeiklVW.jpg",
+      "background": "//image.tmdb.org/t/p/original/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg"
+    },
+    "1639769474895": {
+      "name": "Teen Wolf",
+      "poster": "//image.tmdb.org/t/p/original/8Ij1O2nU8exLgwPXU8Eo6PZdCDC.jpg",
+      "background": "//image.tmdb.org/t/p/original/gZzIQxo2ukFSdZGtlttA0wI6kax.jpg"
+    },
+    "1639849795505": {
+      "name": "The Witcher",
+      "status": "ASSISTIDO",
+      "genre_id": 1639242892318,
+      "poster": "//image.tmdb.org/t/p/original/A2oBYUKgjdy0UeIP88kkdyjw8z6.jpg",
+      "background": "//image.tmdb.org/t/p/original/udwyPqbwWlpqvMgfbRemOahzc7z.jpg"
+    },
+    "1639921217982": {
+      "name": "Wheel time",
+      "status": "ASSISTIDO",
+      "genre_id": "1639340584692",
+      "poster": "//image.tmdb.org/t/p/original/5LKxmsgkBSbwGJkNOnYgD9gzS87.jpg",
+      "background": "//image.tmdb.org/t/p/original/1P3QtW1IkivqDrKbbwuR0zCYIf8.jpg"
     }
   },
   "genres": {
@@ -24,6 +44,9 @@
     },
     "1639340584692": {
       "name": "Sci-fi"
+    },
+    "1639923955915": {
+      "name": "Animação"
     }
   },
   "count": 0

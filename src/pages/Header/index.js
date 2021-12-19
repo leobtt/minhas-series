@@ -22,7 +22,7 @@ const Header = () => {
       <Navbar className="" color="light" light expand="md">
         <div className="container d-md-flex ">
           <div className="d-flex justify-content-between align-items-center">
-            <NavbarBrand className="p-2 me-auto" tag={Link} to="/">
+            <NavbarBrand className="p-3 me-auto" tag={Link} to="/">
               Minhas séries
             </NavbarBrand>
             <NavbarToggler className="" onClick={acionar} />

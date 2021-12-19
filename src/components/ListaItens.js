@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const listaItens = (route, { id, name }, deletar) => {
+const listaItens = (route, { id, name }, deletar, buttonInfo) => {
   return (
     <tr key={id.toString()} className="text-center align-middle">
       <td className="mx-auto">{id}</td>
@@ -11,7 +11,7 @@ const listaItens = (route, { id, name }, deletar) => {
           Remover
         </button>
         <Link to={route + id} className="btn btn-warning">
-          Editar
+          {buttonInfo}
         </Link>
       </td>
     </tr>

@@ -26,28 +26,34 @@ const NovoGenero = () => {
   }
 
   return (
-    <div className="container">
-      <h1>Novo Genêro</h1>
-      <form>
-        <div className=" form-group flex-grow-1">
-          <label htmlFor="name">Nome</label>
-          <input
-            value={name}
-            onInput={onchange}
-            type="text"
-            placeholder="Nome do genêro"
-            className="form-control"
-            id="name"
-          />
-        </div>
-        <button
-          type="button"
-          onClick={add}
-          className="ms-auto p-2 m-1 btn btn-primary"
-        >
-          Adicionar
-        </button>
-      </form>
+    <div>
+      <div className="bg-dark bg-gradient text-white text-center py-3 conatiner-fluid">
+        <h1>Novo genêro</h1>
+      </div>
+      <div className="container mt-3" style={{ 'max-width': '600px' }}>
+        <form>
+          <div className=" form-group flex-grow-1">
+            <label className="ps-1" htmlFor="name">
+              Nome
+            </label>
+            <input
+              value={name}
+              onInput={onchange}
+              type="text"
+              placeholder="Nome do genêro"
+              className="form-control"
+              id="name"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={add}
+            className="p-2 mt-2 btn btn-primary"
+          >
+            Adicionar
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

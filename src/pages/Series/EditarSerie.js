@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Navigate, useParams } from 'react-router-dom'
 import { Badge } from 'reactstrap'
+import axios from 'axios'
 
 const EditarSerie = () => {
   const [form, setForm] = useState('')
   const [success, setSuccess] = useState(false)
-  const [data, setData] = useState([])
-  const [mode, setMode] = useState('OPEN')
+  const [mode, setMode] = useState('CLOSE')
   const [genre, setGenre] = useState([])
 
   const { id } = useParams()
 
   useEffect(() => {
     axios.get(`/api/series/${id}`).then((res) => {
-      setData(res.data)
       setForm(res.data)
     })
   }, [id])
@@ -39,14 +37,14 @@ const EditarSerie = () => {
   }
 
   if (success) {
-    return <Navigate to="/series" />
+    return <Navigate to="/series/" />
   }
 
   // header background
   const masterHeader = {
-    height: '50vh',
+    height: '60vh',
     minHeight: '500px',
-    backgroundImage: `url('${data.background}')`,
+    backgroundImage: `url('${form.background}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -81,24 +79,26 @@ const EditarSerie = () => {
                     </Badge>
                   )}
                 </div>
+                {mode === 'CLOSE' && (
+                  <button
+                    type="button"
+                    className="btn-info btn mt-2"
+                    onClick={() => setMode('OPEN')}
+                  >
+                    Editar
+                  </button>
+                )}
               </div>
             </div>
           </div>
         </div>
       </header>
-      <div className="container">
-        <button
-          type="button"
-          className="btn-primary"
-          onClick={() => setMode('OPEN')}
-        >
-          Editar
-        </button>
-      </div>
+      <div className="container"></div>
       {mode === 'OPEN' && (
         <div className="container">
           <h1>Alterar Série {form.name}</h1>
           <pre>{JSON.stringify(form)}</pre>
+          <pre>{JSON.stringify(genre)}</pre>
           <form>
             <div className=" form-group flex-grow-1">
               <label htmlFor="name" className="px-1 mt-3">
@@ -132,13 +132,10 @@ const EditarSerie = () => {
                 className="form-select"
                 aria-label="Default select example"
                 onChange={onchange('genre_id')}
+                value={form.genre_id}
               >
                 {genre.map((item) => (
-                  <option
-                    key={item.id}
-                    value={item.id}
-                    selected={parseInt(item.id) === parseInt(form.genre_id)}
-                  >
+                  <option key={item.id} value={item.id}>
                     {item.name}
                   </option>
                 ))}
@@ -151,11 +148,12 @@ const EditarSerie = () => {
               </label>
               <div className="form-check px-5 mt-4">
                 <input
-                  onClick={onchange('status')}
+                  onChange={onchange('status')}
                   className="form-check-input"
                   type="radio"
                   name="status"
                   value="ASSISTIDO"
+                  checked={form.status === 'ASSISTIDO'}
                 />
                 <label className="form-check-label" htmlFor="assistido">
                   Assistido
@@ -163,11 +161,12 @@ const EditarSerie = () => {
               </div>
               <div className="form-check px-4 mt-4">
                 <input
-                  onClick={onchange('status')}
+                  onChange={onchange('status')}
                   className="form-check-input"
                   type="radio"
                   name="status"
                   value="PARA_ASSISTIR"
+                  checked={form.status === 'PARA_ASSISTIR'}
                 />
                 <label className="form-check-label" htmlFor="paraAssistir">
                   Para assistir
