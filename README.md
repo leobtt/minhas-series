@@ -1,7 +1,3 @@
-<h1 align="center">
-    <img alt="palpite" title="#palpite" src="https://i.imgur.com/AFcKHTh.png"/>
-</h1>
-
 <h2 align="center"> My Money </h2>
 
 ---
